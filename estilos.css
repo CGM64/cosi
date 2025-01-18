@@ -1,0 +1,107 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+.heart {
+    position: relative;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+    transform: rotate(-45deg);
+    animation: createHeart 2s ease-out forwards, heartbeat 1.5s infinite 2s;
+    cursor: pointer;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+    animation: createHeartParts 2s ease-out forwards;
+}
+
+.heart::before {
+    top: -60px;
+    left: 0;
+    z-index: 1;
+}
+
+.heart::after {
+    top: 0px;
+    left: 67px;
+    z-index: 1;
+}
+
+.heart span {
+    position: absolute;
+    z-index: 2; /* Asegura que el texto esté sobre las otras figuras */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    line-height: 1.2; /* Controla el espaciado entre líneas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    opacity: 0;
+    animation: fadeInText 2s ease-out 2s forwards;
+}
+
+@keyframes createHeart {
+    0% {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        background-color: #ff6b6b;
+    }
+}
+
+@keyframes createHeartParts {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1) rotate(-45deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(-45deg);
+    }
+}
